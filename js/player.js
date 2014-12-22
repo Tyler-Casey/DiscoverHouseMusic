@@ -1,13 +1,30 @@
-function nextSong(){
+// This is the first JS app I have ever written. It's probably horrible, don't shoot me.
+
+
+function nextSong(startup){
 
 	var audioPlayer = document.getElementsByTagName('audio')[0];
 	audioPlayer.pause();
-	audio.currentTime = 0;
 
-	$( ".title" ).text("Waves");
-	$( ".artist" ).text("Mr. Probz");
-	$( ".image" ).attr({src: "https://i1.sndcdn.com/artworks-000046994348-5e13ox-large.jpg"});
-	audio.src = "https://api.soundcloud.com/tracks/90390073/stream?client_id=cbcbab13c65251b27d8cd1b527dbbd0f";
+	// if (startup){
+	// 	audio.currentTime = 0;
+	// }
+
+
+	$.ajax({
+		url: "get.php",
+		dataType: "text",
+		success: function(data) {
+
+			var json = $.parseJSON(data);
+
+			$( ".title" ).text(json.title.replace(/&amp;/g, '&'));
+			$( ".artist" ).text(json.artist.replace(/&amp;/g, '&'));
+			$( ".external" ).attr({href: json.link});
+			$( ".image" ).attr({src: json.coverArt});
+			audio.src = json.stream;
+		}
+	});
 
 	audio.play();
 
@@ -16,6 +33,7 @@ function nextSong(){
 document.getElementById('audio').addEventListener("ended",function() {
 
 	// call function which gets streaming URL. Pass return value to this.src
+	this.pause();
 	nextSong();
 
 });

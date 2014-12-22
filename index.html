@@ -1,9 +1,12 @@
+<html lang="en">
 <html>
 <head>
+	<meta charset="utf-8">
 	<title>Discover House Music | DHM</title>
 	<link rel="stylesheet" href="assets/foundation.css" async/>
 	<link rel="stylesheet" href="assets/style.css" async/>
 	<link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css' async>
+	<script type='text/javascript' src='http://code.jquery.com/jquery-1.7.1.js'></script>
 </head>
 <body>
 
@@ -23,7 +26,7 @@
 							<!-- <a href="#" class="button aboutButton round right">About</a> -->
 						</div>
 						<div class="medium-6 column text-center">
-							<a href="#" class="button customButton round" onclick="nextSong()">Next song &raquo;</a>
+							<a href="#" class="button customButton round" onclick="nextSong(0)">Next song &raquo;</a>
 						</div>
 					</div>
 
@@ -35,16 +38,17 @@
 						<div class="medium-12 column medium-centered content-white">
 
 							<div class="medium-2 column">
-								<img class="image" src="https://i1.sndcdn.com/artworks-000094050155-3f0113-large.jpg">
+								<img class="image" src="assets/startup.png">
 							</div>
 							<div class="medium-10 column">
 
-								<!-- autoplay -->
-							<audio id="audio" class="player"  controls src="https://api.soundcloud.com/tracks/172245994/stream?client_id=cbcbab13c65251b27d8cd1b527dbbd0f" type="audio/mpeg"></audio>
+							<audio id="audio" class="player" autoplay controls src="" type="audio/mpeg"></audio>
 
 
-								<h3 class="title">David Guetta ft. Sam Martin - Dangerous</h3>
-								<h5 class="artist">- David Guetta</h5>
+								<a href="#" class="external">
+									<h3 class="title">loading track...</h3>
+								</a>
+								<h5 class="artist">- loading</h5>
 
 							</div>
 
@@ -67,6 +71,7 @@
 
 </body>
 </html>
-
-<script type='text/javascript' src='http://code.jquery.com/jquery-1.7.1.js'></script>
 <script type='text/javascript' src='js/player.js'></script>
+<script>
+window.onload = function () { nextSong(1); }
+</script>
